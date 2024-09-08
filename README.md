@@ -12,4 +12,4 @@ The menu also has options to limit scrolling of spells slot to only spells, or d
 
 1. Download and extract the contents to your desired folder. (e.g. C:/users/games/OpenMW/mods/)
 
-2. Enable the mod in your OpenMW launcher or alternatively add the .omwscripts to contents= and file path to data= inside your OpenMW.cfg file.
+2. Enable the mod in your OpenMW launcher or alternatively add content=MouseWheel-KeyBinding.omwscripts to content= section and file path to data= inside your OpenMW.cfg file. (e.g. data="D:/Games/OpenMWScripts/Mousewheel-Control-KeyBinding")
