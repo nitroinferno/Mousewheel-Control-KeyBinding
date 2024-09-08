@@ -1,1 +1,5 @@
 /.vscode
+
+#readme's
+*.md
+*.txt
