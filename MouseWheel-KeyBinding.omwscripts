@@ -1,0 +1,3 @@
+MENU: Scripts/ScrollHotKeyCombo/menu.lua
+PLAYER: Scripts/ScrollHotKeyCombo/settings.lua
+PLAYER: Scripts/ScrollHotKeyCombo/player.lua
