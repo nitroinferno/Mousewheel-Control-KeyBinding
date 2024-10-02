@@ -40,6 +40,7 @@ local function getZoom()
 end
 
 local function zoomIn()
+	curMode = camera.getMode()
 	currentZoom = getZoom()
 
 	if currentZoom <= 35 then
@@ -53,6 +54,7 @@ local function zoomIn()
 end
 
 local function zoomOut()
+	curMode = camera.getMode()
 	currentZoom = getZoom()
 	--ui.printToConsole(tostring(currentZoom), util.color.hex("ff0000"))
 	if curMode == 1 then 
