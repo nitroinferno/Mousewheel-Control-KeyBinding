@@ -397,6 +397,8 @@ local function onMouseWheel(vertical, horizontal)
 	local vert = vertical
 
 	if weaponHotKeyPressed and not input.isActionPressed(input.ACTION.Use) then
+		local autoSetStance = gameplaySettings:get("autoSetStance")
+		if autoSetStance then Actor.setStance(self,Actor.STANCE.Weapon) end
 		local weaponList = Actor.inventory(self):getAll(Weapon)
 		local myWeapons = getNonArrowWeapons(weaponList)
 		local test = false
@@ -411,6 +413,8 @@ local function onMouseWheel(vertical, horizontal)
     end
 
 	if spellHotKeyPressed and not input.isActionPressed(input.ACTION.Use) then
+		local autoSetStance = gameplaySettings:get("autoSetStance")
+		if autoSetStance then Actor.setStance(self,Actor.STANCE.Spell) end
 		local allSpells = Actor.spells(self)
 		local spells, powers = getSpellsAndPowers(allSpells)
 		local invItems = Actor.inventory(self):getAll()

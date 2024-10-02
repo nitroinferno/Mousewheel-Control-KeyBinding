@@ -25,6 +25,7 @@ local powerSelectDescription = "Include powers in spell selection:"
 local EnchItemSelectDescription = "Include Enchanted Items in Spell selection:"
 local trinketsOnlyDescription = "This will limit the scrolled magic enchanted items to rings and amulets ONLY"
 local spellScrollDescription = "This will exclude Spell Scrolls from the Spell List"
+local autoSetStanceDescription = "Allow scroll + keybind combo to automatically ready either spell or weapons"
 
 local function setting(key, renderer, argument, name, description, default)
 	return {
@@ -93,6 +94,7 @@ if (core.API_REVISION >= 31) then
 		permanentStorage = false,
 		description = "The default behavior is to allow scrolling of powers, spells and enchanted items equivalent to base game.",
 		settings = {
+			setting("autoSetStance", "checkbox", {}, "Ready Weapon/Spells Automatically", autoSetStanceDescription, true),
 			setting("powerSelect", "checkbox", {}, "Powers", powerSelectDescription, true),
 			setting("spellSelect", "checkbox", {}, "Spells", spellSelectDescription, true),
 			setting("enchantSelect", "checkbox", {}, "Enchanted Items", EnchItemSelectDescription, true),
