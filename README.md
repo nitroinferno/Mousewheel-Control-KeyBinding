@@ -13,7 +13,11 @@ Unbind default camera zoom binding in binding menu which is normally bound to Mo
 
 \*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*
 
-v 1.1.0 Added script to enable camera zoom on mousewheel when either weapon or spell scroll key is not pressed. 
+v 1.1.0 Updates:
+- Added script to enable camera zoom on mousewheel when either weapon or spell scroll key is not pressed.
+- Fixed a bug where sound Fx would play when only 1 weapon was in inventory
+- Weapon unsheathe sound Fx will no longer play when weapon is not unsheathed.
+- Added user setting to automatically ready spells or weapons on keybind + scroll
 
 ## Installation instructions
 
