@@ -9,9 +9,11 @@ This mod will allows you to cycle through weapons and spells by means of a Mouse
 The menu also has options to limit scrolling of spells slot to only spells, or default behavior including spells and enchanted items. Additionally there is an option to omit non ring or amulet type enchanted items, for those of us who dislike when gear gets unequipped unintentionally by enchanted clothing/armors.
 
 \*\*\*\* **Important Note** \*\*\*\*
-Rebind default camera zoom binding in binding menu which is normally bound to MouseWheel input to avoid conflict with weapon or spell scrolling.
+Unbind default camera zoom binding in binding menu which is normally bound to MouseWheel inputs to avoid conflict with weapon or spell scrolling.
 
 \*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*
+
+v 1.1.0 Added script to enable camera zoom on mousewheel when either weapon or spell scroll key is not pressed. 
 
 ## Installation instructions
 
