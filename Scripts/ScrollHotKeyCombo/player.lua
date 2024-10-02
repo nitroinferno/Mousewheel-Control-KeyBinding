@@ -170,12 +170,51 @@ local function sortWeapons(weaponListToSort, sortDirection, debug)
 	return sortedWeapons
 end
 
+--Function that sorts all weapons obtained from player and filters out arrows
+local function getNonArrowWeapons(weaponList, debug)
+	-- Color codes for formatting
+	local colorReset = "\x1b[0m"
+	local colorIndex = "\x1b[33m"  -- Yellow for index
+	local colorObject = "\x1b[35m" -- Purple for object
+	local colorType = "\x1b[36m"   -- Cyan for type
+	local nonArrows = {}
+	local ldebug
+	if debug then
+		ldebug = true
+	else
+		ldebug = false
+	end
+	for i, weapon in ipairs(weaponList) do
+		local weaponRecord = Weapon.record(weapon)
+		local weaponType = weaponRecord and weaponRecord.type or "Unknown"
+		local weapon_ID = weaponRecord.id
+		--Weapon type 12 is arrows
+		if weaponType ~= 12 then
+			if ldebug then
+				print(colorIndex .. "[" .. i .. "]" .. colorReset .. " = " .. colorObject .. tostring(weapon) .. colorReset .. " (" .. colorType .. Weapon.record(weapon).name .. colorReset .. "), " 
+							.. Weapon.record(weapon).type .. " || " .. weapon_ID)
+			end
+			nonArrows[i] = weapon
+		end
+	end
+return nonArrows
+end
+
 local function equip(slot, object)
     local equipment = Actor.equipment(self)
     equipment[slot] = object
     Actor.setEquipment(self, equipment)
-	--the following line plays the proper sound when weapon is equipped
-	ambient.playSound(WEAPON_SOUNDS[Weapon.record(object).type])
+	-- If weapons are readied play the equip sound, do not play if there is no weapons. 
+	if Actor.getStance(self) == Actor.STANCE.Weapon then
+		local weapL = Actor.inventory(self):getAll(Weapon)
+		local weps = getNonArrowWeapons(weapL)
+		local count = 0
+		for _ in pairs(weps) do
+			count = count + 1
+		end
+		-- The following line plays the proper sound when weapon is equipped. Contains logic to handle when user has single weapon
+		if count > 1 or not Actor.getEquipment(self, slot) then ambient.playSound(WEAPON_SOUNDS[Weapon.record(object).type]) end
+	end
 end
 
 local function equipSpell(object, debug)
@@ -260,36 +299,6 @@ local function NextWeapon(meleeWeapons, debug)
     local getCurrentWeapon = function() return Actor.equipment(self)[SLOT_CARRIED_RIGHT] end
     local equipWeapon = function(weapon) equip(SLOT_CARRIED_RIGHT, weapon) end
     NextItem(meleeWeapons, getCurrentWeapon, equipWeapon, false, debug)
-end
-
---Function that sorts all weapons obtained from player and filters out arrows
-local function getNonArrowWeapons(weaponList, debug)
-		-- Color codes for formatting
-		local colorReset = "\x1b[0m"
-		local colorIndex = "\x1b[33m"  -- Yellow for index
-		local colorObject = "\x1b[35m" -- Purple for object
-		local colorType = "\x1b[36m"   -- Cyan for type
-		local nonArrows = {}
-		local ldebug
-		if debug then
-			ldebug = true
-		else
-			ldebug = false
-		end
-		for i, weapon in ipairs(weaponList) do
-			local weaponRecord = Weapon.record(weapon)
-			local weaponType = weaponRecord and weaponRecord.type or "Unknown"
-			local weapon_ID = weaponRecord.id
-			--Weapon type 12 is arrows
-			if weaponType ~= 12 then
-				if ldebug then
-					print(colorIndex .. "[" .. i .. "]" .. colorReset .. " = " .. colorObject .. tostring(weapon) .. colorReset .. " (" .. colorType .. Weapon.record(weapon).name .. colorReset .. "), " 
-								.. Weapon.record(weapon).type .. " || " .. weapon_ID)
-				end
-				nonArrows[i] = weapon
-			end
-		end
-	return nonArrows
 end
 
 local function getEnchantItems(object, filterFunc)
