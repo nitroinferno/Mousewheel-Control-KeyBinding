@@ -7,7 +7,7 @@ local util = require('openmw.util')
 local ui = require('openmw.ui')
 local async = require('openmw.async')
 local camera = require('openmw.camera')
-local I = require('openmw.interfaces').UI
+local I = require('openmw.interfaces')
 local fp = camera.MODE.FirstPerson
 local tp = camera.MODE.ThirdPerson
 local curMode = 0
@@ -72,7 +72,7 @@ end
 
 local function onMouseWheel(vertical, horizontal)
 	local vert = vertical
-	if not noKeysPressed() or not I.UI.getMode() then return end -- Added conditional to handle when ui windows are open to prevent cam zoom
+	if not noKeysPressed() or I.UI.getMode() then return end -- Added conditional to handle when ui windows are open to prevent cam zoom
 	if vert > 0 then
 		--NextSpell is working, need to adopt it to enchanted items
 		zoomIn()
